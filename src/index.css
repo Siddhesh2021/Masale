@@ -89,7 +89,6 @@ button, [role='button'] { -webkit-user-select: none; user-select: none; -webkit-
 /* Admin typography controls. Base size scales rem-based typography site-wide;
    the other controls apply additional scales only to their respective text groups. */
 :root {
-  --type-body-scale: 1;
   --type-heading-scale: 1;
   --type-nav-scale: 1;
   --type-product-scale: 1;
