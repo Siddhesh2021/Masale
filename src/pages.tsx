@@ -98,7 +98,7 @@ export function ProductDetail({ id }: { id: string }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <Container className="pt-28 md:pt-32"><Crumbs items={[{ label: t('prod.title'), to: '/produtos' }, { label: tr(categories.find((c) => c.id === p.cat)?.name || { pt: p.cat, en: p.cat }), to: '/produtos' }, { label: tr(p.name) }]} /></Container>
+      <Container className="pt-28 md:pt-32"><Crumbs items={[{ label: t('prod.title'), to: '/produtos' }, { label: tr(categories.find((c) => c.id === p.cat)?.name || { mr: p.cat, en: p.cat }), to: '/produtos' }, { label: tr(p.name) }]} /></Container>
       <Container className="grid gap-12 pb-28 pt-10 lg:grid-cols-12 lg:gap-20">
         <div className="flex flex-col-reverse gap-4 md:flex-row lg:col-span-7">
           <div className="flex gap-3 md:flex-col">{p.imgs.map((s, i) => <button key={i} onClick={() => setImg(i)} aria-label={`Imagem ${i + 1}`} aria-current={i === img} className={`relative h-24 w-20 shrink-0 overflow-hidden transition-opacity duration-500 active:opacity-100 ${i === img ? '' : 'opacity-45 hover:opacity-100'}`}><img src={s} alt="" className="h-full w-full object-cover" /><span className={`absolute inset-x-0 bottom-0 h-px bg-gold transition-transform duration-700 ${i === img ? 'scale-x-100' : 'scale-x-0'}`} /></button>)}</div>
