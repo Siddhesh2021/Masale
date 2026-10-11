@@ -185,8 +185,20 @@ h1, h2, h3, h4 {
 .fade-up { opacity: 1; transform: none; transition: opacity 0.35s ease-out; }
 .in .fade-up, .fade-up.in { opacity: 1; transform: none; }
 
-.frag-image-reveal { opacity: 0; transform: translateY(30px) scale(1.04); transition: opacity 1000ms var(--ease-out-lux), transform 1000ms var(--ease-out-lux), clip-path 1400ms var(--ease-lux), scale 1000ms var(--ease-out-lux); }
-.in .frag-image-reveal, .frag-image-reveal.in { opacity: 1; transform: translateY(0) scale(1); }
+/* Storefront imagery is content, not a reveal mask. Keep it visible in both
+   scroll directions even when the browser coalesces IntersectionObserver ticks. */
+.frag-image-reveal {
+  display: block;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: transform 700ms var(--ease-out-lux);
+}
+.in .frag-image-reveal, .frag-image-reveal.in {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
 
 /* Smaller screens travel less distance so the entrance stays subtle. */
 @media (max-width: 767px) {
@@ -194,7 +206,7 @@ h1, h2, h3, h4 {
 }
 
 /* image clip reveal */
-.clip { clip-path: inset(100% 0 0 0); transition: clip-path 1.6s var(--ease-lux); }
+.clip { clip-path: inset(0 0 0 0); transition: clip-path 1.6s var(--ease-lux); }
 .clip img { transform: scale(1.25); transition: transform 2.2s var(--ease-out-lux); }
 .in .clip, .clip.in { clip-path: inset(0 0 0 0); }
 .in .clip img, .clip.in img { transform: scale(1); }
