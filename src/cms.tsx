@@ -140,7 +140,7 @@ export function CMSProvider({ children }: { children: ReactNode }) {
   const [leads, setLeads] = useState<OrderLead[]>(() => saved.leads || [])
   useEffect(() => {
     const root = document.documentElement
-    root.style.setProperty('--type-body-scale', String(typography.body / 100))
+    root.style.fontSize = `${typography.body}%`
     root.style.setProperty('--type-heading-scale', String(typography.heading / 100))
     root.style.setProperty('--type-nav-scale', String(typography.nav / 100))
     root.style.setProperty('--type-product-scale', String(typography.product / 100))
