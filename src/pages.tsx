@@ -5,12 +5,12 @@ import { Parallax, Reveal, Lines, useRouter } from './motion'
 import { Instagram, ArrowBtn, TextLink, Sparkle, Botanical, Stars, ProductCard, Qty, Field, useCart, IgTile } from './ui'
 import { Container, InstagramGrid, FinalCTA } from './home'
 
-const PageHero = ({ eyebrow, lines, sub, children }: { eyebrow?: string; lines: ReactNode[]; sub?: string; children?: ReactNode }) => (
-  <Reveal as="header" className="relative overflow-hidden pb-16 pt-40 md:pb-24 md:pt-52" threshold={0}>
+const PageHero = ({ eyebrow, lines, sub, children, singleLine = false }: { eyebrow?: string; lines: ReactNode[]; sub?: string; children?: ReactNode; singleLine?: boolean }) => (
+  <Reveal as="header" className="relative overflow-hidden pb-12 pt-32 md:pb-16 md:pt-40" threshold={0}>
     <Parallax speed={-0.06} className="absolute -right-8 top-24 text-gold/25"><Botanical className="h-[440px]" /></Parallax>
     <Container className="relative">
       {eyebrow && <p className="fade-up eyebrow mb-8 flex items-center gap-3 text-gold"><Sparkle />{eyebrow}</p>}
-      <h1 className="max-w-6xl font-serif text-[clamp(3rem,8vw,8rem)] font-light uppercase leading-[0.92] text-soft"><Lines lines={lines} delay={0.15} /></h1>
+      <h1 className={singleLine ? "relative z-10 flex max-w-full flex-wrap items-baseline gap-x-4 font-serif text-[clamp(2.6rem,7.2vw,7rem)] font-light leading-tight text-soft" : "relative z-10 max-w-6xl font-serif text-[clamp(3rem,8vw,8rem)] font-light uppercase leading-[0.92] text-soft"}>{singleLine ? lines.map((line, i) => <span key={i} className="inline-block whitespace-nowrap">{line}</span>) : <Lines lines={lines} delay={0.15} />}</h1>
       {sub && <p className="fade-up mt-10 max-w-md text-[17px] leading-relaxed text-taupe" style={{ transitionDelay: '.4s' }}>{sub}</p>}
       {children}
     </Container>
@@ -191,7 +191,7 @@ export function ReviewsPage() {
   const avg = approved.reduce((a, b) => a + b.rating, 0) / (approved.length || 1)
   return (
     <>
-      <PageHero lines={[t('reviews.t1'), <em key="a" className="normal-case italic text-gold">{t('reviews.t2')}</em>]}>
+      <PageHero singleLine lines={[t('reviews.t1'), <em key="a" className="normal-case italic text-gold">{t('reviews.t2')}</em>]}>
         <div className="fade-up mt-14 flex flex-wrap items-end gap-14 border-t border-beige pt-8" style={{ transitionDelay: '.5s' }}>
           <div><p className="font-serif text-7xl font-light leading-none">{avg.toFixed(1).replace('.', ',')}</p><div className="mt-3"><Stars n={Math.round(avg)} /></div><p className="eyebrow mt-2 !text-[9px] text-taupe">{t('reviews.avg')}</p></div>
           <div><p className="font-serif text-7xl font-light leading-none">{approved.length}</p><p className="eyebrow mt-3 !text-[9px] text-taupe">{t('reviews.total')}</p></div>
@@ -229,7 +229,7 @@ export function Contact() {
   const fl = (k: keyof typeof f, label: string, c = '', ta = false) => <Field className={c} label={label} textarea={ta} value={f[k]} error={err[k]} onChange={(e) => setF({ ...f, [k]: e.target.value })} />
   return (
     <>
-      <PageHero lines={[t('contact.t1'), <em key="a" className="normal-case italic text-gold">{t('contact.t2')}</em>]} sub={t('contact.sub')} />
+      <PageHero singleLine lines={[t('contact.t1'), <em key="a" className="normal-case italic text-gold">{t('contact.t2')}</em>]} sub={t('contact.sub')} />
       <Container className="grid gap-20 pb-28 lg:grid-cols-12">
         <Reveal className="grid gap-px self-start bg-beige sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1 xl:grid-cols-2">
           {info.map(([I, l, v, href], i) => { const inner = <><I strokeWidth={0.8} className="h-5 w-5 text-gold" /><p className="eyebrow mt-6 !text-[10px] text-taupe">{l}</p><p className="mt-2 break-words font-serif text-xl">{v}</p></>; return href ? <a key={i} href={href} target="_blank" rel="noreferrer" className="fade-up group flex min-h-[112px] flex-col justify-between bg-ivory p-7 transition-colors duration-500 hover:bg-cream active:bg-cream" style={{ transitionDelay: `${i * 0.06}s` }}>{inner}</a> : <div key={i} className="fade-up flex min-h-[112px] flex-col justify-between bg-ivory p-7" style={{ transitionDelay: `${i * 0.06}s` }}>{inner}</div> })}
