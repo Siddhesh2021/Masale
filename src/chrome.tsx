@@ -24,7 +24,7 @@ export function WhatsAppFab() {
 }
 
 export function Nav() {
-  const { nav, tr, t, settings } = useCMS(); const { go, path } = useRouter(); const { count, setOpen } = useCart()
+  const { nav, tr, t, settings, lang } = useCMS(); const { go, path } = useRouter(); const { count, setOpen } = useCart()
   const scrolled = useScrolled(); const [menu, setMenu] = useState(false)
   const overHero = false
   const canonicalNavLabel = (url: string) => {
