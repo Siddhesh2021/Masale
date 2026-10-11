@@ -91,7 +91,7 @@ export function Nav() {
         <nav className="flex h-full flex-col justify-center overflow-y-auto overscroll-contain px-[max(2rem,var(--sal))] pb-[calc(2.5rem+var(--sab))] pt-24">
           {items.map((n, i) => (
             <span key={n.id} className="mline border-b border-beige/60 py-2.5">
-              <button tabIndex={menu ? 0 : -1} onClick={() => nav2(n.url)} className="tap-y -ml-1 flex w-full items-baseline justify-between pl-1 text-left font-serif text-[2.6rem] font-light leading-none text-soft transition-[transform,opacity] duration-[1100ms] ease-out-lux active:opacity-60" style={{ transform: menu ? 'none' : 'translateY(110%)', transitionDelay: menu ? `${0.35 + i * 0.07}s` : '0s' }}>
+              <button tabIndex={menu ? 0 : -1} onClick={() => nav2(n.url)} className="tap-y -ml-1 flex w-full items-baseline justify-between pl-1 text-left font-serif text-[2.6rem] font-light leading-none text-soft transition-[transform,opacity] duration-[1100ms] ease-out-lux active:opacity-60" style={{ transform: 'none', transitionDelay: menu ? `${0.15 + i * 0.04}s` : '0s', opacity: menu ? 1 : 0 }}>
                 {tr(n.label)}<span className="eyebrow !text-[9px] text-taupe">0{i + 1}</span>
               </button>
             </span>
