@@ -246,8 +246,8 @@ export function Contact() {
           )}
         </Reveal>
       </Container>
-      <section aria-label="Mapa" className="relative h-[60vh] overflow-hidden border-t border-beige">
-        <iframe title={settings.address} loading="lazy" className="h-full w-full grayscale-[0.9] sepia-[0.25] contrast-[0.9]" src={settings.mapUrl} />
+      <section aria-label="Google Maps — Pune, Maharashtra" className="relative h-[60vh] min-h-[360px] overflow-hidden border-t border-beige">
+        <iframe title={settings.address || 'Pune, Maharashtra, India'} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen className="h-full w-full border-0 grayscale-[0.65] sepia-[0.18] contrast-[0.95]" src={settings.mapUrl || 'https://maps.google.com/maps?q=Pune%2C%20Maharashtra%2C%20India&output=embed'} />
         <div className="pointer-events-none absolute left-5 top-5 bg-cream/95 px-6 py-4 md:left-10"><p className="eyebrow !text-[9px] text-gold">{settings.brand}</p><p className="font-serif text-xl">{settings.address}</p></div>
       </section>
     </>
