@@ -206,10 +206,12 @@ h1, h2, h3, h4 {
 }
 
 /* image clip reveal */
-.clip { clip-path: inset(0 0 0 0); transition: clip-path 1.6s var(--ease-lux); }
-.clip img { transform: scale(1.25); transition: transform 2.2s var(--ease-out-lux); }
-.in .clip, .clip.in { clip-path: inset(0 0 0 0); }
-.in .clip img, .clip.in img { transform: scale(1); }
+/* Clips are decorative framing only; do not hide actual product/food photography
+   until a one-way observer fires. Fast scroll reversals must never blank the frame. */
+.clip { clip-path: none !important; transition: none; }
+.clip img { transform: none !important; transition: transform 700ms var(--ease-out-lux); }
+.in .clip, .clip.in { clip-path: none !important; }
+.in .clip img, .clip.in img { transform: none !important; }
 
 .arch { border-radius: 999px 999px 0 0; }
 
