@@ -27,6 +27,16 @@ export function Nav() {
   const { nav, tr, t, settings } = useCMS(); const { go, path } = useRouter(); const { count, setOpen } = useCart()
   const scrolled = useScrolled(); const [menu, setMenu] = useState(false)
   const overHero = false
+  const canonicalNavLabel = (url: string) => {
+    const labels: Record<string, { mr: string; en: string }> = {
+      '/': { mr: 'मुख्यपृष्ठ', en: 'Home' },
+      '/produtos': { mr: 'उत्पादने', en: 'Products' },
+      '/sobre': { mr: 'आमच्याबद्दल', en: 'Our Story' },
+      '/avaliacoes': { mr: 'अभिप्राय', en: 'Reviews' },
+      '/contato': { mr: 'संपर्क', en: 'Contact' },
+    }
+    return labels[url]?.[lang] ?? ''
+  }
   const items = nav.filter((n) => n.visible).sort((a, b) => a.order - b.order)
   const nav2 = (u: string) => { setMenu(false); go(u) }
   useEffect(() => { document.body.style.overflow = menu ? 'hidden' : '' }, [menu])
@@ -70,7 +80,7 @@ export function Nav() {
               <span className="eyebrow hidden !text-[10px] sm:inline">{menu ? t('nav.close') : t('nav.menu')}</span>
             </button>
             <nav aria-label="Principal" className="hidden items-center gap-7 xl:flex 2xl:gap-9">
-              {items.map((n) => <button key={n.id} onClick={() => nav2(n.url)} className={`group tap relative eyebrow !text-[10px] transition-colors duration-500 active:opacity-60 ${overHero ? 'text-cream' : 'text-soft'}`}>{tr(n.label)}<span className={`absolute -bottom-1.5 left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-gold transition-all duration-500 ${path === n.url ? 'opacity-100' : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'}`} /></button>)}
+              {items.map((n) => <button key={n.id} onClick={() => nav2(n.url)} className={`group tap relative eyebrow !text-[10px] transition-colors duration-500 active:opacity-60 ${overHero ? 'text-cream' : 'text-soft'}`}>{canonicalNavLabel(n.url) || tr(n.label)}<span className={`absolute -bottom-1.5 left-1/2 h-[3px] w-[3px] -translate-x-1/2 rounded-full bg-gold transition-all duration-500 ${path === n.url ? 'opacity-100' : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'}`} /></button>)}
             </nav>
           </div>
           <button onClick={() => nav2('/')} aria-label={settings.brand} className="tap absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-700 hover:scale-[1.03] active:scale-100"><Logo light={overHero} /></button>
@@ -92,7 +102,7 @@ export function Nav() {
           {items.map((n, i) => (
             <span key={n.id} className="mline border-b border-beige/60 py-2.5">
               <button tabIndex={menu ? 0 : -1} onClick={() => nav2(n.url)} className="tap-y -ml-1 flex w-full items-baseline justify-between pl-1 text-left font-serif text-[2.6rem] font-light leading-none text-soft transition-[transform,opacity] duration-[1100ms] ease-out-lux active:opacity-60" style={{ transform: 'none', transitionDelay: menu ? `${0.15 + i * 0.04}s` : '0s', opacity: menu ? 1 : 0 }}>
-                {tr(n.label)}<span className="eyebrow !text-[9px] text-taupe">0{i + 1}</span>
+                {canonicalNavLabel(n.url) || tr(n.label)}<span className="eyebrow !text-[9px] text-taupe">0{i + 1}</span>
               </button>
             </span>
           ))}
