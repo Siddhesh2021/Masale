@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -88,16 +88,16 @@ button, [role='button'] { -webkit-user-select: none; user-select: none; -webkit-
 
 /* Marathi headline typography and visibility fixes. Cormorant is Latin-only, so use a Devanagari-first stack for all headings and keep the display reveal from clipping long glyphs. */
 .font-serif {
-  font-family: 'Noto Sans Devanagari', 'Noto Serif Devanagari', Georgia, serif;
+  font-family: 'Noto Serif Devanagari', 'Noto Sans Devanagari', Georgia, serif;
   font-kerning: normal;
 }
 h1, h2, h3, h4 {
-  font-family: 'Noto Sans Devanagari', 'Noto Serif Devanagari', Georgia, serif;
+  font-family: 'Noto Serif Devanagari', 'Noto Sans Devanagari', Georgia, serif;
   letter-spacing: 0 !important;
   word-break: normal;
   overflow-wrap: anywhere;
-  line-height: 1.22;
-  padding-bottom: 0.12em;
+  line-height: 1.32;
+  padding-bottom: 0.2em;
 }
 .mline {
   display: block;
@@ -106,10 +106,11 @@ h1, h2, h3, h4 {
 }
 .mline > span {
   display: block;
-  transform: translateY(0);
-  transition: opacity 0.45s var(--ease-out-lux), transform 0.45s var(--ease-out-lux);
+  transform: none !important;
+  opacity: 1 !important;
+  transition: none;
 }
-.in .mline > span { transform: none; }
+.in .mline > span { transform: none !important; opacity: 1 !important; }
 [lang="mr-IN"] .eyebrow {
   letter-spacing: 0.08em;
   text-transform: none;
