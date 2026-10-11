@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react'
-import { LayoutGrid, Package, Tags, Droplets, MessageCircle, Users, Star, FileText, Languages, Menu, Home, Phone, Search, Image, Settings, ArrowUp, ArrowDown, Eye, EyeOff, Trash2, Plus, Check, X, ExternalLink, Type, SlidersHorizontal } from 'lucide-react'
+import { LayoutGrid, Package, Tags, Droplets, MessageCircle, Users, Star, FileText, Languages, Menu, Home, Phone, Search, Image, Settings, ArrowUp, ArrowDown, Eye, EyeOff, Trash2, Plus, Check, X, ExternalLink, Type } from 'lucide-react'
 import { useCMS, brl, type Product, type OrderLead } from './cms'
 import { useRouter } from './motion'
 import { Logo, Stars, IgTile, Instagram } from './ui'
@@ -41,7 +41,7 @@ function ProductEditor({ p, onSave, onClose }: { p: Product; onSave: (p: Product
           <In area label="Description — Marathi" value={d.desc.mr} onChange={(v) => s('desc', { ...d.desc, mr: v })} /><In area label="Description — EN" value={d.desc.en} onChange={(v) => s('desc', { ...d.desc, en: v })} />
           <In type="number" label="Price (₹ INR)" value={d.price} onChange={(v) => s('price', +v)} /><In type="number" label="Sale price" value={d.promo ?? ''} onChange={(v) => s('promo', v ? +v : undefined)} />
           <label className="block"><span className="eyebrow !text-[9px] text-taupe">Category</span><select value={d.cat} onChange={(e) => s('cat', e.target.value)} className="mt-2 w-full border border-beige bg-ivory px-3 py-2.5 text-sm">{categories.map((c) => <option key={c.id} value={c.id}>{c.name.mr}</option>)}</select></label>
-          <label className="block"><span className="eyebrow !text-[9px] text-taupe">Fragrance</span><select value={d.frag} onChange={(e) => s('frag', e.target.value)} className="mt-2 w-full border border-beige bg-ivory px-3 py-2.5 text-sm">{fragrances.map((f) => <option key={f.id} value={f.id}>{f.name.mr}</option>)}</select></label>
+          <label className="block"><span className="eyebrow !text-[9px] text-taupe">Masala collection</span><select value={d.frag} onChange={(e) => s('frag', e.target.value)} className="mt-2 w-full border border-beige bg-ivory px-3 py-2.5 text-sm">{fragrances.map((f) => <option key={f.id} value={f.id}>{f.name.mr}</option>)}</select></label>
           <In label="Weight / Volume" value={d.size} onChange={(v) => s('size', v)} /><In label="Slug" value={d.id} onChange={(v) => s('id', v)} />
           <In label="SEO title" max={60} value={d.name.mr + ' | Marathi Masale'} onChange={() => {}} /><In label="SEO description" max={160} value={d.desc.mr} onChange={() => {}} />
         </div>
@@ -61,7 +61,7 @@ export default function Admin() {
   const cms = useCMS(); const { go } = useRouter()
   const [sec, setSec] = useState<string>('overview'); const [side, setSide] = useState(false)
   const [edit, setEdit] = useState<Product | null>(null); const [q, setQ] = useState(''); const [grp, setGrp] = useState('all')
-  const { products, setProducts, reviews, setReviews, posts, setPosts, nav, setNav, settings, setSettings, sections, setSections, dict, setDict, fragrances, setFragrances, categories, setCategories, assets, setAssets, leads, setLeads, typography, setTypography } = cms
+  const { products, setProducts, reviews, setReviews, posts, setPosts, nav, setNav, settings, setSettings, sections, setSections, dict, setDict, fragrances, setFragrances, categories, setCategories, assets, setAssets, leads, setLeads } = cms
   const move = <T,>(arr: T[], i: number, d: number) => { const a = [...arr]; const j = i + d; if (j < 0 || j >= a.length) return a; [a[i], a[j]] = [a[j], a[i]]; return a }
 
   const views: Record<string, ReactNode> = {
@@ -117,10 +117,10 @@ export default function Admin() {
     media: <><H title="Media Library" sub="Cole URLs públicas para atualizar imagens em todo o site" /><div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">{Object.entries(assets).map(([k, v]) => <Card key={k} className="p-3"><div className="aspect-[16/10] overflow-hidden bg-mist"><img loading="lazy" src={v} alt="" className="h-full w-full object-cover" /></div><label className="mt-3 block"><span className="eyebrow !text-[9px] text-gold">{k}</span><input value={v} onChange={(e) => setAssets({ ...assets, [k]: e.target.value })} className="mt-2 w-full border border-beige bg-ivory px-2 py-2 text-xs outline-none focus:border-gold" /></label></Card>)}</div></>,
     typography: (() => {
       const specs = [
-        ['body','Body text','All paragraphs and supporting copy'],
+        ['body','Base text size','Scales rem-based text across the site'],
         ['heading','Headings','Hero, section and page headings'],
         ['nav','Navigation','Header and menu labels'],
-        ['product','Product cards','Product titles and card text'],
+        ['product','Product cards','Product names and product card titles'],
         ['loader','Loading screen','Brand name and loader subtitle'],
       ] as const
       return <><H title="Typography & Sizes" sub="Adjust text sizes site-wide. 100% is the design default." />
