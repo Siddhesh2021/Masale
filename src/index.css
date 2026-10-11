@@ -86,6 +86,23 @@ button, [role='button'] { -webkit-user-select: none; user-select: none; -webkit-
   .carousel-h { transition: height 620ms var(--ease-lux); }
 }
 
+/* Global admin-controlled typography scales */
+body, p, li, label, input, textarea, select, button {
+  font-size: calc(1em * var(--type-body-scale, 1));
+}
+h1, h2, h3, h4, .font-serif {
+  font-size: calc(1em * var(--type-heading-scale, 1));
+}
+.site-nav-label, header nav a, header nav button {
+  font-size: calc(1em * var(--type-nav-scale, 1));
+}
+.product-card-title, [data-type="product-title"] {
+  font-size: calc(1em * var(--type-product-scale, 1));
+}
+.loader-brand {
+  font-size: calc(1em * var(--type-loader-scale, 1));
+}
+
 /* Marathi headline typography and visibility fixes. Cormorant is Latin-only, so use a Devanagari-first stack for all headings and keep the display reveal from clipping long glyphs. */
 .font-serif {
   font-family: 'Noto Serif Devanagari', 'Noto Sans Devanagari', Georgia, serif;
