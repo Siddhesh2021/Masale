@@ -234,7 +234,23 @@ function Fragrances() {
             </div>
             <div className="relative lg:col-span-4">
               <div className="arch relative mx-auto aspect-[3/4.2] w-full overflow-hidden">
-                {fragrances.map((x, i) => <FragImg key={x.id} src={x.img} alt={tr(x.name)} className={`absolute inset-0 h-full w-full object-cover ${i === a ? 'scale-100 opacity-100 [clip-path:inset(0_0_0_0)]' : 'scale-110 opacity-0 [clip-path:inset(0_0_100%_0)]'}`} />)}
+                {fragrances.map((x, i) => (
+                  <img
+                    key={x.id}
+                    loading="lazy"
+                    decoding="async"
+                    src={x.img}
+                    alt={tr(x.name)}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={{
+                      opacity: i === a ? 1 : 0,
+                      visibility: i === a ? 'visible' : 'hidden',
+                      transform: i === a ? 'scale(1)' : 'scale(1.03)',
+                      transition: 'opacity 400ms ease, transform 700ms ease',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                ))}
               </div>
               <div className="arch pointer-events-none absolute inset-x-[-1rem] -inset-y-4 border transition-colors duration-1000" style={{ borderColor: f.accent + '80' }} />
             </div>
