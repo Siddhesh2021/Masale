@@ -8,7 +8,7 @@ export const LangSwitch = ({ light }: { light?: boolean }) => {
   const { lang, setLang } = useCMS()
   return (
     <div className={`eyebrow flex items-center gap-2 !text-[10px] ${light ? 'text-cream' : 'text-soft'}`} role="group" aria-label="Idioma / Language">
-      {(['pt', 'en'] as const).map((l, i) => <span key={l} className="flex items-center gap-2">{i > 0 && <span className="opacity-40">|</span>}<button aria-pressed={lang === l} onClick={() => setLang(l)} className={`relative transition-opacity duration-500 ${lang === l ? '' : 'opacity-45 hover:opacity-100'}`}>{l.toUpperCase()}<span className={`absolute -bottom-1 left-0 h-px w-full origin-left bg-gold transition-transform duration-700 ease-lux ${lang === l ? 'scale-x-100' : 'scale-x-0'}`} /></button></span>)}
+      {(['mr', 'en'] as const).map((l, i) => <span key={l} className="flex items-center gap-2">{i > 0 && <span className="opacity-40">|</span>}<button aria-pressed={lang === l} onClick={() => setLang(l)} className={`relative transition-opacity duration-500 ${lang === l ? '' : 'opacity-45 hover:opacity-100'}`}>{l.toUpperCase()}<span className={`absolute -bottom-1 left-0 h-px w-full origin-left bg-gold transition-transform duration-700 ease-lux ${lang === l ? 'scale-x-100' : 'scale-x-0'}`} /></button></span>)}
     </div>
   )
 }
@@ -16,7 +16,7 @@ export const LangSwitch = ({ light }: { light?: boolean }) => {
 export function WhatsAppFab() {
   const { settings } = useCMS()
   return (
-    <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noreferrer" aria-label="Falar com a Gramado Aroma pelo WhatsApp" title="WhatsApp" className="whatsapp-fab fixed bottom-[calc(1.25rem+var(--sab))] right-[max(1.25rem,var(--sar))] z-[58] flex h-14 w-14 items-center justify-center rounded-full bg-[#2f6b4f] text-cream shadow-lg shadow-soft/20 transition-transform duration-500 hover:scale-105 active:scale-95">
+    <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noreferrer" aria-label="Falar com a Marathi Masale pelo WhatsApp" title="WhatsApp" className="whatsapp-fab fixed bottom-[calc(1.25rem+var(--sab))] right-[max(1.25rem,var(--sar))] z-[58] flex h-14 w-14 items-center justify-center rounded-full bg-[#2f6b4f] text-cream shadow-lg shadow-soft/20 transition-transform duration-500 hover:scale-105 active:scale-95">
       <MessageCircle strokeWidth={1.25} className="h-6 w-6" />
       <span className="hidden whitespace-nowrap text-xs font-semibold tracking-[.12em]">WhatsApp</span>
     </a>
@@ -111,7 +111,7 @@ const REQ: (keyof Form)[] = ['name', 'phone', 'cep', 'street', 'number', 'city',
 export function CartDrawer() {
   const { open, setOpen, lines, set } = useCart(); const { products, tr, t, settings, addLead } = useCMS(); const { go } = useRouter()
   const [step, setStep] = useState<'cart' | 'form'>('cart')
-  const [f, setF] = useState<Form>(() => { try { return JSON.parse(localStorage.getItem('ga-customer') || '') } catch { return Object.fromEntries(FIELDS.map((k) => [k, ''])) as Form } })
+  const [f, setF] = useState<Form>(() => { try { return JSON.parse(localStorage.getItem('mm-customer') || '') } catch { return Object.fromEntries(FIELDS.map((k) => [k, ''])) as Form } })
   const [err, setErr] = useState<Partial<Form>>({}); const [save, setSave] = useState(true)
   const items = lines.map((l) => ({ ...l, p: products.find((p) => p.id === l.id)! })).filter((x) => x.p)
   const subtotal = items.reduce((a, b) => a + b.qty * (b.p.promo ?? b.p.price), 0)
@@ -124,7 +124,7 @@ export function CartDrawer() {
     if (f.email && !/^\S+@\S+\.\S+$/.test(f.email)) e.email = t('form.invalidEmail')
     if (f.phone && f.phone.replace(/\D/g, '').length < 10) e.phone = t('form.invalidPhone')
     setErr(e); if (Object.keys(e).length) return
-    if (save) localStorage.setItem('ga-customer', JSON.stringify(f))
+    if (save) localStorage.setItem('mm-customer', JSON.stringify(f))
     addLead({
       id: `GA-${Date.now().toString().slice(-6)}`,
       customer: f,
@@ -210,7 +210,7 @@ export function Footer() {
             <div><p className="eyebrow mb-4 !text-[10px] text-taupe">{t('footer.social')}</p><ul className="space-y-1 text-sm text-logo/80"><li><a href={`https://instagram.com/${settings.instagram}`} target="_blank" rel="noreferrer" className="tap-y flex items-center gap-2 py-1 hover:text-gold active:opacity-60"><Instagram strokeWidth={1} className="h-4 w-4" />Instagram</a></li><li><a href={`https://facebook.com/${settings.facebook}`} target="_blank" rel="noreferrer" className="tap-y flex items-center gap-2 py-1 hover:text-gold active:opacity-60"><Facebook strokeWidth={1} className="h-4 w-4" />Facebook</a></li></ul><div className="mt-6"><LangSwitch /></div></div>
           </div>
         </div>
-        <div className="mt-20 select-none text-center font-script text-[clamp(4rem,20vw,19rem)] leading-[0.8] text-logo/[0.07] md:mt-28" aria-hidden>Gramado</div>
+        <div className="mt-20 select-none text-center font-script text-[clamp(4rem,20vw,19rem)] leading-[0.8] text-logo/[0.07] md:mt-28" aria-hidden>Marathi Masale</div>
         {/* safe-b sets padding-bottom outright and outranks py-*, so the design
             padding is expressed additively here — otherwise this bar loses its
             2rem and sits flush against the gesture bar. */}
