@@ -110,11 +110,12 @@ header nav a, header nav button, .site-nav-label {
   white-space: nowrap;
   overflow-wrap: normal;
   word-break: keep-all;
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(1.6rem, 5vw, 4.5rem);
   zoom: var(--type-loader-scale, 1);
   line-height: 1.3;
   letter-spacing: 0;
   text-align: center;
+  flex-shrink: 1;
 }
 .loader-subtitle {
   font-size: clamp(.8rem, 1.4vw, 1.1rem);
@@ -378,3 +379,8 @@ h1, h2, h3, h4 {
 }
 @keyframes drip { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
 @keyframes adminIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 520px) {
+  .loader-brand { font-size: clamp(1.35rem, 7vw, 2.3rem); max-width: calc(100vw - 1.5rem); }
+  .loader-subtitle { font-size: clamp(.7rem, 3.2vw, .9rem); max-width: calc(100vw - 1.5rem); }
+}
