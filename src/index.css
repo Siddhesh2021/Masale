@@ -86,21 +86,41 @@ button, [role='button'] { -webkit-user-select: none; user-select: none; -webkit-
   .carousel-h { transition: height 620ms var(--ease-lux); }
 }
 
-/* Global admin-controlled typography scales */
-body, p, li, label, input, textarea, select, button {
-  font-size: calc(1em * var(--type-body-scale, 1));
+/* Site-wide typography sizes set by the admin Typography panel.
+   Use the scale in the declared size itself so Tailwind's responsive sizes continue to work. */
+:root {
+  --type-body-scale: 1;
+  --type-heading-scale: 1;
+  --type-nav-scale: 1;
+  --type-product-scale: 1;
+  --type-loader-scale: 1;
+}
+p, li, blockquote, .story-body, .hero-subtext {
+  font-size: calc(1em * var(--type-body-scale));
 }
 h1, h2, h3, h4, .font-serif {
-  font-size: calc(1em * var(--type-heading-scale, 1));
+  /* Do not overwrite component clamp sizes here: only scale their visual text. */
+  letter-spacing: 0 !important;
 }
-.site-nav-label, header nav a, header nav button {
-  font-size: calc(1em * var(--type-nav-scale, 1));
+header nav a, header nav button, .site-nav-label {
+  font-size: calc(1em * var(--type-nav-scale));
 }
 .product-card-title, [data-type="product-title"] {
-  font-size: calc(1em * var(--type-product-scale, 1));
+  font-size: calc(1em * var(--type-product-scale));
 }
 .loader-brand {
-  font-size: calc(1em * var(--type-loader-scale, 1));
+  font-size: clamp(calc(2.6rem * var(--type-loader-scale)), calc(7vw * var(--type-loader-scale)), calc(5.5rem * var(--type-loader-scale)));
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-align: center;
+  max-width: calc(100vw - 2rem);
+  overflow-wrap: anywhere;
+}
+.loader-subtitle {
+  font-size: clamp(calc(.8rem * var(--type-loader-scale)), calc(1.4vw * var(--type-loader-scale)), calc(1.1rem * var(--type-loader-scale)));
+  letter-spacing: .04em;
+  text-align: center;
+  max-width: calc(100vw - 2rem);
 }
 
 /* Marathi headline typography and visibility fixes. Cormorant is Latin-only, so use a Devanagari-first stack for all headings and keep the display reveal from clipping long glyphs. */
