@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect, useState, type Context, type Reac
 import igGrid from './imports/Screenshot_2026-10-05_231343.png'
 import logo from './imports/623959740_17842566177686511_6336884742571772822_n.jpg'
 
-export type Lang = 'pt' | 'en'
-export type L = { pt: string; en: string }
+export type Lang = 'mr' | 'en'
+export type L = { mr: string; en: string }
 const u = (id: string, w = 1400) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=75&w=${w}`
 
 export const IMG = {
@@ -155,10 +155,10 @@ export const T: Record<string, [string, string]> = {
   'reviews.t1': ['Experiências que', 'Experiences that'], 'reviews.t2': ['ficam na memória.', 'stay in memory.'], 'reviews.avg': ['Média de avaliações', 'Average rating'], 'reviews.total': ['avaliações', 'reviews'], 'reviews.empty': ['Ainda não há avaliações nesta categoria.', 'There are no reviews in this category yet.'], 'reviews.see': ['Ver produto', 'View product'],
   'contact.t1': ['Vamos', "Let's"], 'contact.t2': ['conversar?', 'talk?'], 'contact.sub': ['Dúvidas, presentes, pedidos especiais ou parcerias — estamos aqui.', 'Questions, gifts, special orders or partnerships — we are here.'],
   'contact.subject': ['Assunto', 'Subject'], 'contact.message': ['Mensagem', 'Message'], 'contact.send': ['Enviar mensagem', 'Send message'], 'contact.wa': ['Falar pelo WhatsApp', 'Chat on WhatsApp'], 'contact.sent': ['Mensagem enviada. Responderemos em breve.', 'Message sent. We will reply soon.'], 'contact.hours': ['Horário de atendimento', 'Business hours'], 'contact.address': ['Endereço', 'Address'],
-  'footer.statement': ['Fragrâncias para casa que transformam pequenos momentos em experiências.', 'Home fragrances that turn small moments into experiences.'], 'footer.nav': ['Navegação', 'Navigation'], 'footer.service': ['Atendimento', 'Customer care'], 'footer.social': ['Social', 'Social'],
+  'footer.statement': ['Fragrâncias para casa que transformam pequenos momentos em experiências.', 'Authentic Maharashtrian masalas, pickles and homemade foods.'], 'footer.nav': ['Navegação', 'Navigation'], 'footer.service': ['Atendimento', 'Customer care'], 'footer.social': ['Social', 'Social'],
   'footer.news': ['Receba novidades e inspirações.', 'Receive news and inspiration.'], 'footer.newsBtn': ['Cadastrar', 'Subscribe'], 'footer.newsOk': ['Obrigado! Você receberá nossas novidades.', 'Thank you! You will receive our news.'], 'footer.privacy': ['Política de Privacidade', 'Privacy Policy'], 'footer.terms': ['Termos de Uso', 'Terms of Use'], 'footer.rights': ['Todos os direitos reservados.', 'All rights reserved.'],
   '404.title': ['Este aroma se perdeu.', 'This scent drifted away.'], '404.sub': ['A página que você procura não existe ou mudou de lugar.', 'The page you are looking for does not exist or has moved.'], '404.cta': ['Voltar ao início', 'Back home'],
-  'seo.home': ['Gramado Aroma — Fragrâncias para casa', 'Gramado Aroma — Home fragrance'],
+  'seo.home': ['Gramado Aroma — Fragrâncias para casa', 'मराठी मसाले — अस्सल घरगुती मसाले'],
 }
 
 export type Store = {
