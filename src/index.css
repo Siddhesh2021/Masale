@@ -16,7 +16,7 @@
   --color-chilli: #8A3025;
   --color-turmeric: #D3A12D;
   --color-leaf: #394936;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Noto Serif Devanagari', 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Noto Sans Devanagari', 'Manrope', system-ui, sans-serif;
   --font-script: 'Pinyon Script', cursive;
   --ease-lux: cubic-bezier(0.76, 0, 0.24, 1);
