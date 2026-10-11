@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type ElementType } from 'react'
+import { useCMS } from './cms'
 
 /* Motion system
    ease-lux      cubic-bezier(.76,0,.24,1)  curtains, masks, page transitions
@@ -144,6 +145,7 @@ export function Router({ children }: { children: (path: string) => ReactNode }) 
 
 /* Loader: letters rise through a mask, a gold hairline counts 0→100, then the panel splits as an arch opening onto the hero. */
 export function Loader({ onDone }: { onDone: () => void }) {
+  const { t } = useCMS()
   const [n, setN] = useState(0); const [out, setOut] = useState(false); const [ready, setReady] = useState(false)
   useEffect(() => {
     if (reduced()) { onDone(); return }
@@ -152,15 +154,14 @@ export function Loader({ onDone }: { onDone: () => void }) {
     const tick = (t: number) => { const p = Math.min(1, (t - t0) / 2400); setN(Math.round((1 - Math.pow(1 - p, 3)) * 100)); if (p < 1) raf = requestAnimationFrame(tick); else { setTimeout(() => setOut(true), 250); setTimeout(onDone, 1650) } }
     raf = requestAnimationFrame(tick); return () => cancelAnimationFrame(raf)
   }, [])
-  const word = (w: string) => <span className="inline-block">{w}</span>
   return (
     <div role="status" aria-label="Loading Marathi Masale" className="fixed inset-0 z-[90]">
       <div className={`absolute inset-x-0 top-0 h-1/2 bg-ivory transition-transform duration-[1300ms] ease-lux ${out ? '-translate-y-full' : ''}`} />
       <div className={`absolute inset-x-0 bottom-0 h-1/2 bg-ivory transition-transform duration-[1300ms] ease-lux ${out ? 'translate-y-full' : ''}`} />
       <div className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-out-lux ${out ? 'scale-95 opacity-0' : ''}`}>
         <div className={`mb-6 h-px bg-gold transition-all duration-[1600ms] ease-out-lux ${ready ? 'w-10' : 'w-0'}`} />
-        <div className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.95] tracking-[0.18em] text-soft">{word('मराठी मसाले')}</div>
-        <div className="mt-3 text-[clamp(.8rem,1.4vw,1.1rem)] tracking-[0.9em] text-taupe">{word('महाराष्ट्रीयन चव')}</div>
+        <div className="loader-brand font-serif font-light text-soft">{t('loader.brand')}</div>
+        <div className="loader-subtitle mt-3 text-taupe">{t('loader.subtitle')}</div>
         <div className="absolute bottom-12 left-1/2 w-48 -translate-x-1/2">
           <div className="h-px w-full bg-beige"><div className="h-px bg-gold" style={{ width: `${n}%` }} /></div>
           <div className="eyebrow mt-3 flex justify-between text-taupe"><span>महाराष्ट्र · भारत</span><span className="tabular-nums">{String(n).padStart(3, '0')}</span></div>
