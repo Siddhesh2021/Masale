@@ -160,9 +160,9 @@ export function CMSProvider({ children }: { children: ReactNode }) {
   }, [lang, dict])
   useEffect(() => { localStorage.setItem('mm-lang', lang) }, [lang])
   useEffect(() => {
-    const data: PersistedCMS = { dict, products, reviews, posts, nav, settings, sections, fragrances, categories, assets, leads }
+    const data: PersistedCMS = { dict, products, reviews, posts, nav, settings: { ...settings, typography }, typography, sections, fragrances, categories, assets, leads }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-  }, [dict, products, reviews, posts, nav, settings, sections, fragrances, categories, assets, leads])
+  }, [dict, products, reviews, posts, nav, settings, typography, sections, fragrances, categories, assets, leads])
   const i = lang === 'mr' ? 0 : 1
   const t = (k: string) => dict[k]?.[i] ?? k
   const tr = (l: L) => l[lang]
