@@ -73,7 +73,7 @@ export const Lines = ({ lines, delay = 0, step = 0.09 }: { lines: ReactNode[]; d
 /* Cursor: small dot + ring that lerps behind. Elements opt in via data-cursor="view|drag|link". */
 export function Cursor() {
   const dot = useRef<HTMLDivElement>(null), ring = useRef<HTMLDivElement>(null)
-  const [label, setLabel] = useState(''); const [mode, setMode] = useState('')
+  const [label, setLabel] = useState('Marathi Masale'); const [mode, setMode] = useState('')
   useEffect(() => {
     if (!window.matchMedia('(pointer: fine)').matches) return
     document.body.classList.add('has-cursor')
@@ -126,7 +126,7 @@ export function Router({ children }: { children: (path: string) => ReactNode }) 
   const go = (p: string) => {
     if (p === path) { scrollTo({ top: 0, behavior: 'smooth' }); return }
     if (reduced()) { location.hash = p; scrollTo(0, 0); return }
-    setLabel(p === '/' ? 'Marathi Masale' : p.split('/')[1].replace(/-/g, ' '))
+    setLabel(p === '/' ? 'मराठी मसाले' : p.split('/')[1].replace(/-/g, ' '))
     setPhase('cover')
     setTimeout(() => { location.hash = p; setPath(p); scrollTo(0, 0); setPhase('reveal') }, 900)
     setTimeout(() => setPhase('idle'), 1900)
@@ -160,7 +160,7 @@ export function Loader({ onDone }: { onDone: () => void }) {
       <div className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-out-lux ${out ? 'scale-95 opacity-0' : ''}`}>
         <div className={`mb-6 h-px bg-gold transition-all duration-[1600ms] ease-out-lux ${ready ? 'w-10' : 'w-0'}`} />
         <div className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.95] tracking-[0.18em] text-soft">{word('मराठी मसाले', 0.1)}</div>
-        <div className="mt-3 text-[clamp(.8rem,1.4vw,1.1rem)] tracking-[0.9em] text-taupe">{word('AROMA', 0.6)}</div>
+        <div className="mt-3 text-[clamp(.8rem,1.4vw,1.1rem)] tracking-[0.9em] text-taupe">{word('महाराष्ट्रीयन चव', 0.6)}</div>
         <div className="absolute bottom-12 left-1/2 w-48 -translate-x-1/2">
           <div className="h-px w-full bg-beige"><div className="h-px bg-gold" style={{ width: `${n}%` }} /></div>
           <div className="eyebrow mt-3 flex justify-between text-taupe"><span>महाराष्ट्र · भारत</span><span className="tabular-nums">{String(n).padStart(3, '0')}</span></div>
