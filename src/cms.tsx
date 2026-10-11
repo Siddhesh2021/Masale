@@ -53,11 +53,7 @@ export const PRODUCTS:Product[] = [
 
 ]
 export type Review = {id:string;name:string;rating:number;date:string;product:string;text:L;photo?:string;approved:boolean;featured:boolean}
-export const REVIEWS:Review[] = [
- {id:'r1',name:'ग्राहक',rating:5,date:'2026-09-12',product:'kala-masala',text:{mr:'मसाल्याची चव छान आहे आणि पदार्थांना घरगुती स्वाद मिळतो.',en:'The masala tastes great and adds a homemade flavour to meals.'},photo:IMG.candleTable,approved:false,featured:false},
- {id:'r2',name:'ग्राहक',rating:5,date:'2026-08-28',product:'goda-masala',text:{mr:'गोडा मसाला आमटी आणि भाजीसाठी खूप छान आहे.',en:'Goda masala works beautifully in amti and vegetables.'},photo:IMG.candleTable,approved:false,featured:false},
- {id:'r3',name:'ग्राहक',rating:5,date:'2026-08-10',product:'mango-pickle',text:{mr:'लोणच्याचा मसाला खमंग आहे.',en:'The pickle has a fragrant, balanced spice mix.'},photo:IMG.bath,approved:false,featured:false},
-]
+export const REVIEWS: Review[] = []
 export type Post = {id:string;type:'post'|'reel';title:string;col:number;row:number;url:string;featured:boolean}
 export const POSTS:Post[] = [
  [0,0,'post','घरगुती मसाले'],[3,0,'reel','ताज्या मसाल्यांचा सुगंध'],[5,0,'post','महाराष्ट्रीयन चव'],[1,1,'reel','घरगुती पदार्थ'],[2,1,'post','मसाल्यांची तयारी'],[3,1,'post','पापड आणि लोणची'],[4,1,'post','पारंपरिक चव'],[0,2,'reel','फराळ स्पेशल'],[1,2,'post','घरचा स्वाद'],[4,2,'post','सणासुदीचे पदार्थ']
