@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { ArrowLeft, ArrowRight, Flame, Leaf, Wheat, CookingPot } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Flame, Leaf, Wheat, CookingPot, PenTool, Gem, Hourglass } from 'lucide-react'
 import { useCMS, brl } from './cms'
 import { Parallax, Reveal, Lines, useRouter, useSmoothScroll } from './motion'
 import { ArrowBtn, TextLink, Sparkle, Botanical, Stars, IgTile } from './ui'
