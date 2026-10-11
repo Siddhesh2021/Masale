@@ -99,7 +99,7 @@ export function ProductCard({ p, tall, onQuick }: { p: Product; tall?: boolean; 
           <p className="mt-1 text-xs tracking-wide text-taupe">{p.size} · {tr(f.notes).split('·')[0]}</p>
         </div>
         <div className="shrink-0 text-right" itemProp="offers" itemScope itemType="https://schema.org/Offer">
-          <meta itemProp="priceCurrency" content="BRL" /><meta itemProp="price" content={String(p.price)} />
+          <meta itemProp="priceCurrency" content="INR" /><meta itemProp="price" content={String(p.price)} />
           <link itemProp="availability" href={p.stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'} />
           <p className="text-sm tabular-nums text-soft">{brl(p.price)}</p>
           {onQuick && <button onClick={() => onQuick(p)} className="eyebrow tap-y mt-1 !text-[10px] text-gold opacity-100 transition duration-500 active:opacity-60 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">{t('prod.quick')}</button>}
@@ -112,7 +112,7 @@ export function ProductCard({ p, tall, onQuick }: { p: Product; tall?: boolean; 
   )
 }
 
-/* Instagram tile — crops the real @gramadoaromaoficial grid screenshot */
+/* Instagram tile — crops the real @marathimasaleoficial grid screenshot */
 export function IgTile({ post, className = '' }: { post: Post; className?: string }) {
   const { t, assets } = useCMS()
   const bx = ((16 + post.col * 203) / (1237 - 203)) * 100, by = ((9 + post.row * 270) / (887 - 270)) * 100
