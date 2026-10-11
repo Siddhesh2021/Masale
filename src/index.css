@@ -3,16 +3,19 @@
 
 @theme {
   --color-ivory: #F7F1E7;
-  --color-cream: #FAF8F3;
+  --color-cream: #FFF9EF;
   --color-ink: #171717;
   --color-soft: #292521;
-  --color-gold: #C99826;
-  --color-gold-2: #C6A15B;
-  --color-taupe: #A89B8C;
+  --color-gold: #D3A12D;
+  --color-gold-2: #E0B43D;
+  --color-taupe: #78695D;
   --color-beige: #D9D0C4;
   --color-mist: #EEE9E1;
-  --color-blush: #F8F2EE;
-  --color-logo: #4A4645;
+  --color-blush: #F4E6D3;
+  --color-logo: #33251E;
+  --color-chilli: #8A3025;
+  --color-turmeric: #D3A12D;
+  --color-leaf: #394936;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Noto Sans Devanagari', 'Manrope', system-ui, sans-serif;
   --font-script: 'Pinyon Script', cursive;
