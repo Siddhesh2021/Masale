@@ -208,7 +208,13 @@ function Fragrances() {
           <div ref={mobileImage} className="relative z-0 mx-auto mt-12 w-[78%] transition-transform duration-200 ease-out">
             <button type="button" onClick={() => product && go('/produto/' + product.id)} className="group block w-full text-left">
               <div className="arch relative h-[38svh] min-h-[260px] max-h-[360px] overflow-hidden border p-2" style={{ borderColor: f.accent + '70' }}>
-                <FragImg key={f.id} src={product?.imgs[0] || f.img} alt={tr(product?.name || f.name)} className="arch h-full w-full object-cover group-active:scale-105" />
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src={product?.imgs[0] || f.img}
+                  alt={tr(product?.name || f.name)}
+                  className="arch h-full w-full object-cover"
+                />
                 {product && <div className="mobile-fragrance-swap absolute inset-x-2 bottom-2 bg-gradient-to-t from-soft/75 to-transparent px-4 pb-4 pt-14 text-cream"><p className="font-serif text-xl leading-tight">{tr(product.name)}</p><p className="mt-1 text-xs tabular-nums">{brl(product.promo ?? product.price)}</p></div>}
               </div>
             </button>
