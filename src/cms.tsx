@@ -111,7 +111,7 @@ type PersistedCMS = {
   settings: typeof SETTINGS; sections: typeof SECTIONS; fragrances: Fragrance[]
   categories: CategoryItem[]; assets: typeof IMG; leads: OrderLead[]
 }
-const STORAGE_KEY = 'marathi-masale-cms-v1'
+const STORAGE_KEY = 'marathi-masale-spices-v1'
 const loadCMS = (): Partial<PersistedCMS> => {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }
   catch { return {} }
