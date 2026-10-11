@@ -154,7 +154,7 @@ function Collection() {
                   <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-100" />
                   <div className="absolute inset-x-0 bottom-0 p-4 pb-6 pt-16 text-white">
                     <p className="eyebrow mb-2 !text-[9px] font-semibold text-gold-2">{tr(f.name)} · {p.size}</p>
-                    <p className="overflow-hidden py-1 font-serif text-[clamp(1.6rem,2.4vw,2.6rem)] font-medium leading-[1.02]"><span className="block transition-transform duration-[900ms] ease-out-lux md:translate-y-2 md:group-hover:translate-y-0">{tr(p.name)}</span></p>
+                    <p data-type="product-title" className="overflow-hidden py-1 font-serif text-[clamp(1.6rem,2.4vw,2.6rem)] font-medium leading-[1.02]"><span className="block transition-transform duration-[900ms] ease-out-lux md:translate-y-2 md:group-hover:translate-y-0">{tr(p.name)}</span></p>
                     <div className="mt-3 flex items-center justify-between overflow-hidden py-1"><span className="block text-sm tabular-nums font-semibold transition-all duration-[900ms] ease-out-lux md:translate-y-full md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">{brl(p.price)}</span><span className="eyebrow flex items-center gap-2 !text-[9px] font-semibold transition-all delay-100 duration-[900ms] ease-out-lux md:translate-y-full md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">{t('prod.view')}<ArrowRight strokeWidth={1} className="h-3.5 w-3.5" /></span></div>
                   </div>
                 </div>
