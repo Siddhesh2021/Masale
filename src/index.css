@@ -137,7 +137,7 @@ h1, h2, h3, h4 {
   font-family: 'Noto Serif Devanagari', 'Noto Sans Devanagari', Georgia, serif;
   letter-spacing: 0 !important;
   word-break: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   line-height: 1.32;
   padding-bottom: 0.2em;
 }
