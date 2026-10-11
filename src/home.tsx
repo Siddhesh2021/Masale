@@ -234,7 +234,7 @@ function Fragrances() {
             </div>
             <div className="relative lg:col-span-4">
               <div className="arch relative mx-auto aspect-[3/4.2] w-full overflow-hidden">
-                {fragrances.map((x, i) => (
+                {fragrances.map((x, index) => (
                   <img
                     key={x.id}
                     loading="lazy"
@@ -243,9 +243,9 @@ function Fragrances() {
                     alt={tr(x.name)}
                     className="absolute inset-0 h-full w-full object-cover"
                     style={{
-                      opacity: i === a ? 1 : 0,
-                      visibility: i === a ? 'visible' : 'hidden',
-                      transform: i === a ? 'scale(1)' : 'scale(1.03)',
+                      opacity: index === a ? 1 : 0,
+                      visibility: index === a ? 'visible' : 'hidden',
+                      transform: index === a ? 'scale(1)' : 'scale(1.03)',
                       transition: 'opacity 400ms ease, transform 700ms ease',
                       pointerEvents: 'none',
                     }}
