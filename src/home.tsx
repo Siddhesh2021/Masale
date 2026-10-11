@@ -52,19 +52,12 @@ function ScrubText({ text, className = '' }: { text: string; className?: string 
   return <p className={className}>{text}</p>
 }
 
-/* Masala collection image: animates the <img> itself inside its (static, overflow-hidden)
-   arch/frame — opacity 0 + translateY(30px)/scale(1.04) → visible, 1000ms ease-out-lux.
-   Self-observes via IntersectionObserver so every CMS-driven fragrance (present and
-   future) animates on scroll entrance, and remounts (key change) replay it. */
+/* Scroll-safe fragrance images.
+   Images must never be hidden while waiting for an intersection callback: fast
+   reverse scrolling, scroll restoration and mobile viewport changes can miss the
+   threshold, leaving opacity/clip-path stuck at their pre-reveal values. */
 function FragImg({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
-  const ref = useRef<HTMLImageElement>(null)
-  useEffect(() => {
-    const el = ref.current!
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('in'); io.disconnect() } }, { threshold: 0.2 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-  return <img ref={ref} loading="lazy" src={src} alt={alt} className={`frag-image-reveal ${className}`} />
+  return <img loading="lazy" decoding="async" src={src} alt={alt} className={`frag-image-reveal ${className}`} />
 }
 
 function Story() {
