@@ -137,11 +137,11 @@ h1, h2, h3, h4 {
 }
 
 /* mask line reveal */
-.mline { display: block; overflow: hidden; padding-bottom: 0.08em; }
-.mline > span { display: block; transform: translateY(110%); transition: transform 1.4s var(--ease-out-lux); }
-.in .mline > span { transform: none; }
+.mline { display: block; overflow: visible !important; padding: 0.02em 0 0.24em; }
+.mline > span { display: block; transform: none !important; opacity: 1 !important; transition: none !important; }
+.in .mline > span { transform: none !important; opacity: 1 !important; }
 
-.fade-up { opacity: 0; transform: translateY(40px); transition: opacity 1.2s var(--ease-out-lux), transform 1.4s var(--ease-out-lux); }
+.fade-up { opacity: 1; transform: none; transition: opacity 0.35s ease-out; }
 .in .fade-up, .fade-up.in { opacity: 1; transform: none; }
 
 .frag-image-reveal { opacity: 0; transform: translateY(30px) scale(1.04); transition: opacity 1000ms var(--ease-out-lux), transform 1000ms var(--ease-out-lux), clip-path 1400ms var(--ease-lux), scale 1000ms var(--ease-out-lux); }
@@ -308,7 +308,7 @@ h1, h2, h3, h4 {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-  .mline > span, .fade-up, .frag-image-reveal { transform: none; opacity: 1; }
+  .mline > span, .fade-up, .frag-image-reveal { transform: none !important; opacity: 1 !important; }
   .clip { clip-path: none; }
 }
 @keyframes drip { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
