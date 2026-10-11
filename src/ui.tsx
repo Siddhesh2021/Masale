@@ -95,7 +95,7 @@ export function ProductCard({ p, tall, onQuick }: { p: Product; tall?: boolean; 
       </button>
       <div className="mt-5 flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <h3 itemProp="name" className="font-serif text-2xl leading-tight text-soft">{tr(p.name)}</h3>
+          <h3 itemProp="name" data-type="product-title" className="font-serif text-2xl leading-tight text-soft">{tr(p.name)}</h3>
           <p className="mt-1 text-xs tracking-wide text-taupe">{p.size} · {tr(f.notes).split('·')[0]}</p>
         </div>
         <div className="shrink-0 text-right" itemProp="offers" itemScope itemType="https://schema.org/Offer">
