@@ -17,12 +17,12 @@ function Hero({ ready }: { ready: boolean }) {
       <div className="hero-vignette absolute inset-0" />
       <div className="hero-grain absolute inset-0" aria-hidden="true" />
       <Parallax speed={-0.1} className="absolute bottom-[-6%] right-[6%] hidden w-[22vw] max-w-[340px] md:block">
-        <div className="hero-candle arch clip relative aspect-[3/4.2] overflow-hidden border border-gold/40 bg-mist p-2" style={{ transitionDelay: '.6s' }}>
+        <div className="hero-spice arch clip relative aspect-[3/4.2] overflow-hidden border border-gold/40 bg-mist p-2" style={{ transitionDelay: '.6s' }}>
           <img src={assets.candleTable} alt="मसाले" className="arch h-full w-full object-cover" style={{ transitionDelay: '.6s' }} />
-          <span className="hero-candle-smoke" aria-hidden="true">
-            <i className="hero-candle-smoke-puff hero-candle-smoke-puff-a" />
-            <i className="hero-candle-smoke-puff hero-candle-smoke-puff-b" />
-            <i className="hero-candle-smoke-puff hero-candle-smoke-puff-c" />
+          <span className="hero-spice-smoke" aria-hidden="true">
+            <i className="hero-spice-smoke-puff hero-spice-smoke-puff-a" />
+            <i className="hero-spice-smoke-puff hero-spice-smoke-puff-b" />
+            <i className="hero-spice-smoke-puff hero-spice-smoke-puff-c" />
           </span>
         </div>
       </Parallax>
@@ -52,7 +52,7 @@ function ScrubText({ text, className = '' }: { text: string; className?: string 
   return <p className={className}>{text}</p>
 }
 
-/* Fragrance main image: animates the <img> itself inside its (static, overflow-hidden)
+/* Masala collection image: animates the <img> itself inside its (static, overflow-hidden)
    arch/frame — opacity 0 + translateY(30px)/scale(1.04) → visible, 1000ms ease-out-lux.
    Self-observes via IntersectionObserver so every CMS-driven fragrance (present and
    future) animates on scroll entrance, and remounts (key change) replay it. */
