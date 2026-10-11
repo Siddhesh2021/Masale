@@ -4,6 +4,7 @@ export type Lang = 'mr' | 'en'
 export type L = { mr: string; en: string }
 const u = (id: string, w = 1400) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&q=75&w=${w}`
 
+// Reset the UAT persistence namespace after the Marathi Masale rebrand.
 export const IMG = {
   hero: u('1596040033229-a9821ebd058d', 2200),
   candleTable: u('1596040033229-a9821ebd058d'),
@@ -114,7 +115,7 @@ type PersistedCMS = {
   settings: typeof SETTINGS; sections: typeof SECTIONS; fragrances: Fragrance[]
   categories: CategoryItem[]; assets: typeof IMG; leads: OrderLead[]
 }
-const STORAGE_KEY = 'marathi-masale-spices-v1'
+const STORAGE_KEY = 'marathi-masale-uat-v2'
 const loadCMS = (): Partial<PersistedCMS> => {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }
   catch { return {} }
