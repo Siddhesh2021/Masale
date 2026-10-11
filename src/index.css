@@ -86,6 +86,35 @@ button, [role='button'] { -webkit-user-select: none; user-select: none; -webkit-
   .carousel-h { transition: height 620ms var(--ease-lux); }
 }
 
+/* Marathi headline typography and visibility fixes. Cormorant is Latin-only, so use a Devanagari-first stack for all headings and keep the display reveal from clipping long glyphs. */
+.font-serif {
+  font-family: 'Noto Sans Devanagari', 'Noto Serif Devanagari', Georgia, serif;
+  font-kerning: normal;
+}
+h1, h2, h3, h4 {
+  font-family: 'Noto Sans Devanagari', 'Noto Serif Devanagari', Georgia, serif;
+  letter-spacing: 0 !important;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.22;
+  padding-bottom: 0.12em;
+}
+.mline {
+  display: block;
+  overflow: visible;
+  padding: 0.02em 0 0.18em;
+}
+.mline > span {
+  display: block;
+  transform: translateY(0);
+  transition: opacity 0.45s var(--ease-out-lux), transform 0.45s var(--ease-out-lux);
+}
+.in .mline > span { transform: none; }
+[lang="mr-IN"] .eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
 .eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 500; }
 
 /* On touch the labels carry real meaning, so lift them out of the 8–9px
