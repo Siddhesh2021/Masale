@@ -159,11 +159,11 @@ export function Loader({ onDone }: { onDone: () => void }) {
       <div className={`absolute inset-x-0 bottom-0 h-1/2 bg-ivory transition-transform duration-[1300ms] ease-lux ${out ? 'translate-y-full' : ''}`} />
       <div className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-out-lux ${out ? 'scale-95 opacity-0' : ''}`}>
         <div className={`mb-6 h-px bg-gold transition-all duration-[1600ms] ease-out-lux ${ready ? 'w-10' : 'w-0'}`} />
-        <div className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.95] tracking-[0.18em] text-soft">{word('GRAMADO', 0.1)}</div>
+        <div className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.95] tracking-[0.18em] text-soft">{word('मराठी मसाले', 0.1)}</div>
         <div className="mt-3 text-[clamp(.8rem,1.4vw,1.1rem)] tracking-[0.9em] text-taupe">{word('AROMA', 0.6)}</div>
         <div className="absolute bottom-12 left-1/2 w-48 -translate-x-1/2">
           <div className="h-px w-full bg-beige"><div className="h-px bg-gold" style={{ width: `${n}%` }} /></div>
-          <div className="eyebrow mt-3 flex justify-between text-taupe"><span>Gramado · RS</span><span className="tabular-nums">{String(n).padStart(3, '0')}</span></div>
+          <div className="eyebrow mt-3 flex justify-between text-taupe"><span>महाराष्ट्र · भारत</span><span className="tabular-nums">{String(n).padStart(3, '0')}</span></div>
         </div>
       </div>
     </div>
