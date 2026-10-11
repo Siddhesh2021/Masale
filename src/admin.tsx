@@ -131,7 +131,7 @@ export default function Admin() {
             <span className="tabular-nums text-sm">{cms.typography[key]}%</span>
           </div>)}
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <div><p className="font-serif text-2xl" style={{fontSize:'calc(1.5rem * var(--type-heading-scale, 1))'}}>मराठी मसाले · Marathi Masale</p><p className="mt-2 text-sm text-taupe" style={{fontSize:'calc(.875rem * var(--type-body-scale, 1))'}}>Preview body text — मसाल्यांची अस्सल चव</p></div>
+            <div><p className="font-serif text-2xl" style={{fontSize:'calc(1.5rem * var(--type-heading-scale, 1))'}}>मराठी मसाले · Marathi Masale</p><p className="mt-2 text-sm text-taupe" >Preview body text — मसाल्यांची अस्सल चव</p></div>
             <Btn ghost onClick={() => cms.setTypography({body:100,heading:100,nav:100,product:100,loader:100})}>Reset to 100%</Btn>
           </div>
         </Card></>
