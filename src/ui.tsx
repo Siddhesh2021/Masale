@@ -63,14 +63,14 @@ type CartCtx = { lines: Line[]; add: (id: string, q?: number) => void; set: (id:
 const CC = createContext<CartCtx>(null!)
 export const useCart = () => useContext(CC)
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [lines, setLines] = useState<Line[]>(() => { try { return JSON.parse(localStorage.getItem('ga-cart') || '[]') } catch { return [] } }); const [open, setOpen] = useState(false); const [toast, setToast] = useState('')
+  const [lines, setLines] = useState<Line[]>(() => { try { return JSON.parse(localStorage.getItem('mm-cart') || '[]') } catch { return [] } }); const [open, setOpen] = useState(false); const [toast, setToast] = useState('')
   const { products, tr, t } = useCMS()
   const add = (id: string, q = 1) => {
     setLines((l) => l.find((x) => x.id === id) ? l.map((x) => x.id === id ? { ...x, qty: x.qty + q } : x) : [...l, { id, qty: q }])
     const p = products.find((x) => x.id === id); setToast(`${p ? tr(p.name) : ''} — ${t('pdp.added')}`); setTimeout(() => setToast(''), 2800)
   }
   const set = (id: string, q: number) => setLines((l) => q <= 0 ? l.filter((x) => x.id !== id) : l.map((x) => x.id === id ? { ...x, qty: q } : x))
-  useEffect(() => { localStorage.setItem('ga-cart', JSON.stringify(lines)) }, [lines])
+  useEffect(() => { localStorage.setItem('mm-cart', JSON.stringify(lines)) }, [lines])
   return <CC.Provider value={{ lines, add, set, open, setOpen, toast, count: lines.reduce((a, b) => a + b.qty, 0) }}>{children}</CC.Provider>
 }
 
