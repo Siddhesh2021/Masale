@@ -115,9 +115,30 @@ export default function Admin() {
       <div className="mb-8 border border-beige bg-cream p-6"><p className="eyebrow mb-3 !text-[9px] text-taupe">Google preview</p><p className="text-sm text-[#1a0dab]">{dict['seo.home'][0]}</p><p className="text-xs text-[#006621]">marathimasale.example</p><p className="mt-1 max-w-xl text-xs text-soft/70">{dict['hero.sub'][0]}</p></div>
       <Card className="overflow-x-auto"><table className="w-full min-w-[700px]"><thead><tr><Th>Page</Th><Th>Slug</Th><Th>SEO title</Th><Th>Meta description</Th></tr></thead><tbody>{[['Home', '/', dict['seo.home'][0], dict['hero.sub'][0]], ['Products', '/produtos', 'Products | Marathi Masale', dict['prod.sub'][0]], ['About', '/sobre', 'About Marathi Masale', dict['about.sub'][0]], ['Reviews', '/avaliacoes', 'Reviews | Marathi Masale', 'Authentic Maharashtrian masalas and homemade foods.'], ['Contact', '/contato', 'Contact | Marathi Masale', dict['contact.sub'][0]]].map(([n, s, ti, d]) => <tr key={s}><Td>{n}</Td><Td className="font-mono text-xs">{s}</Td><Td><span className={ti.length > 60 ? 'text-red-800' : ''}>{ti}</span> <span className="text-[10px] text-taupe">{ti.length}/60</span></Td><Td><span className="text-xs">{d}</span> <span className="text-[10px] text-taupe">{d.length}/160</span></Td></tr>)}</tbody></table></Card></>,
     media: <><H title="Media Library" sub="Cole URLs públicas para atualizar imagens em todo o site" /><div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">{Object.entries(assets).map(([k, v]) => <Card key={k} className="p-3"><div className="aspect-[16/10] overflow-hidden bg-mist"><img loading="lazy" src={v} alt="" className="h-full w-full object-cover" /></div><label className="mt-3 block"><span className="eyebrow !text-[9px] text-gold">{k}</span><input value={v} onChange={(e) => setAssets({ ...assets, [k]: e.target.value })} className="mt-2 w-full border border-beige bg-ivory px-2 py-2 text-xs outline-none focus:border-gold" /></label></Card>)}</div></>,
+    typography: (() => {
+      const specs = [
+        ['body','Body text','All paragraphs and supporting copy'],
+        ['heading','Headings','Hero, section and page headings'],
+        ['nav','Navigation','Header and menu labels'],
+        ['product','Product cards','Product titles and card text'],
+        ['loader','Loading screen','Brand name and loader subtitle'],
+      ] as const
+      return <><H title="Typography & Sizes" sub="Adjust text sizes site-wide. 100% is the design default." />
+        <Card className="space-y-6 p-6">
+          {specs.map(([key,label,description]) => <div key={key} className="grid gap-3 border-b border-beige pb-5 last:border-0 md:grid-cols-[210px_1fr_70px] md:items-center">
+            <div><p className="text-sm font-medium">{label}</p><p className="mt-1 text-xs text-taupe">{description}</p></div>
+            <input aria-label={label + ' size'} type="range" min={75} max={150} step={5} value={cms.typography[key]} onChange={(e) => cms.setTypography({...cms.typography,[key]:Number(e.target.value)})} className="w-full accent-[#D3A12D]" />
+            <span className="tabular-nums text-sm">{cms.typography[key]}%</span>
+          </div>)}
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div><p className="font-serif text-2xl" style={{fontSize:'calc(1.5rem * var(--type-heading-scale, 1))'}}>मराठी मसाले · Marathi Masale</p><p className="mt-2 text-sm text-taupe" style={{fontSize:'calc(.875rem * var(--type-body-scale, 1))'}}>Preview body text — मसाल्यांची अस्सल चव</p></div>
+            <Btn ghost onClick={() => cms.setTypography({body:100,heading:100,nav:100,product:100,loader:100})}>Reset to 100%</Btn>
+          </div>
+        </Card></>
+    })(),
     settings: <><H title="Settings" /><Card className="grid gap-5 p-6 md:grid-cols-2"><div className="flex items-center gap-6 md:col-span-2"><img src={assets.logo} className="h-20 w-20 border border-beige object-cover" /><In label="Logo URL" value={assets.logo} onChange={(v) => setAssets({ ...assets, logo: v })} /></div><In label="Brand name" value={settings.brand} onChange={(v) => setSettings({ ...settings, brand: v })} /><In label="Currency" value={settings.currency} onChange={(v) => setSettings({ ...settings, currency: v })} />
       <div><p className="eyebrow mb-2 !text-[9px] text-taupe">Default language</p><div className="flex gap-2">{(['mr', 'en'] as const).map((l) => <button key={l} onClick={() => setSettings({ ...settings, defaultLang: l })} className={`eyebrow px-4 py-2 !text-[10px] ${settings.defaultLang === l ? 'bg-soft text-cream' : 'border border-beige'}`}>{l === 'mr' ? 'Marathi — MR' : 'English — EN'}</button>)}</div></div>
-      <In area label="Footer text — Marathi" value={dict['footer.statement'][0]} onChange={(v) => setDict({ ...dict, 'footer.statement': [v, dict['footer.statement'][1]] })} /></Card></>,
+      <In area label="Footer text — Marathi" value={dict['footer.statement'][0]} onChange={(v) => setDict({ ...dict, 'footer.statement': [''+v, dict['footer.statement'][1]] })} /></Card></>,
   }
 
   return (
