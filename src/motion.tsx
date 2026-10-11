@@ -126,7 +126,7 @@ export function Router({ children }: { children: (path: string) => ReactNode }) 
   const go = (p: string) => {
     if (p === path) { scrollTo({ top: 0, behavior: 'smooth' }); return }
     if (reduced()) { location.hash = p; scrollTo(0, 0); return }
-    setLabel(p === '/' ? 'Gramado Aroma' : p.split('/')[1].replace(/-/g, ' '))
+    setLabel(p === '/' ? 'Marathi Masale' : p.split('/')[1].replace(/-/g, ' '))
     setPhase('cover')
     setTimeout(() => { location.hash = p; setPath(p); scrollTo(0, 0); setPhase('reveal') }, 900)
     setTimeout(() => setPhase('idle'), 1900)
@@ -154,7 +154,7 @@ export function Loader({ onDone }: { onDone: () => void }) {
   }, [])
   const word = (w: string, d: number) => <span className="flex overflow-hidden">{w.split('').map((c, i) => <span key={i} className="inline-block transition-transform duration-[1200ms] ease-out-lux" style={{ transform: ready ? 'none' : 'translateY(105%)', transitionDelay: `${d + i * 0.06}s` }}>{c}</span>)}</span>
   return (
-    <div role="status" aria-label="Carregando Gramado Aroma" className="fixed inset-0 z-[90]">
+    <div role="status" aria-label="Loading Marathi Masale" className="fixed inset-0 z-[90]">
       <div className={`absolute inset-x-0 top-0 h-1/2 bg-ivory transition-transform duration-[1300ms] ease-lux ${out ? '-translate-y-full' : ''}`} />
       <div className={`absolute inset-x-0 bottom-0 h-1/2 bg-ivory transition-transform duration-[1300ms] ease-lux ${out ? 'translate-y-full' : ''}`} />
       <div className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ease-out-lux ${out ? 'scale-95 opacity-0' : ''}`}>
