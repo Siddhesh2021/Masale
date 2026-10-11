@@ -163,6 +163,9 @@ h1, h2, h3, h4 {
 .mobile-fragrance-swap { animation: fragranceSwap .65s var(--ease-out-lux) both; }
 
 .story-body {
+  font-family: 'Noto Sans Devanagari', 'Noto Serif Devanagari', Georgia, serif;
+  font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+  line-height: 1.75;
   color: #24211e;
   text-shadow: 0 1px 10px rgba(245, 241, 234, .35);
 }
@@ -175,6 +178,7 @@ h1, h2, h3, h4 {
   stroke: #b58a35;
 }
 .collection-card-copy {
+  font-family: 'Noto Sans Devanagari', 'Manrope', sans-serif;
   background: linear-gradient(180deg, transparent 0%, rgba(20, 18, 16, .78) 68%, rgba(20, 18, 16, .92) 100%);
   text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
 }
@@ -197,6 +201,8 @@ h1, h2, h3, h4 {
   background: radial-gradient(ellipse at center, rgba(250, 248, 243, .78) 0%, rgba(248, 242, 238, .46) 42%, rgba(248, 242, 238, .2) 75%, rgba(248, 242, 238, .34) 100%);
 }
 .final-cta-title {
+  font-family: 'Noto Serif Devanagari', 'Noto Sans Devanagari', Georgia, serif;
+  line-height: 1.35;
   color: #302b27;
   text-shadow: 0 1px 18px rgba(250, 248, 243, .86);
 }
