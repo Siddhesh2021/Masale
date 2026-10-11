@@ -7,7 +7,7 @@ import { Instagram, Facebook, Logo, useCart, useScrolled, Qty, ArrowBtn, Field, 
 export const LangSwitch = ({ light }: { light?: boolean }) => {
   const { lang, setLang } = useCMS()
   return (
-    <div className={`eyebrow flex items-center gap-2 !text-[10px] ${light ? 'text-cream' : 'text-soft'}`} role="group" aria-label="Idioma / Language">
+    <div className={`eyebrow flex items-center gap-2 !text-[10px] ${light ? 'text-cream' : 'text-soft'}`} role="group" aria-label="भाषा / Language">
       {(['mr', 'en'] as const).map((l, i) => <span key={l} className="flex items-center gap-2">{i > 0 && <span className="opacity-40">|</span>}<button aria-pressed={lang === l} onClick={() => setLang(l)} className={`relative transition-opacity duration-500 ${lang === l ? '' : 'opacity-45 hover:opacity-100'}`}>{l.toUpperCase()}<span className={`absolute -bottom-1 left-0 h-px w-full origin-left bg-gold transition-transform duration-700 ease-lux ${lang === l ? 'scale-x-100' : 'scale-x-0'}`} /></button></span>)}
     </div>
   )
