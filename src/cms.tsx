@@ -63,7 +63,7 @@ export type NavItem = {id:string;label:L;url:string;order:number;visible:boolean
 export const NAV:NavItem[] = [
 {id:'n1',label:{mr:'मुख्यपृष्ठ',en:'Home'},url:'/',order:1,visible:true,external:false},{id:'n2',label:{mr:'उत्पादने',en:'Products'},url:'/produtos',order:2,visible:true,external:false},{id:'n3',label:{mr:'आमच्याबद्दल',en:'Our Story'},url:'/sobre',order:3,visible:true,external:false},{id:'n4',label:{mr:'अभिप्राय',en:'Reviews'},url:'/avaliacoes',order:4,visible:true,external:false},{id:'n5',label:{mr:'संपर्क',en:'Contact'},url:'/contato',order:5,visible:true,external:false}
 ]
-export const SETTINGS = {brand: 'Marathi Masale',whatsapp: '919004859475',phone: '+91 90048 59475',email:'',address:'महाराष्ट्र, भारत · Maharashtra, India',instagram:'',facebook:'',mapUrl:'',hours:{mr:'सोमवार ते शनिवार · सकाळी ९ ते संध्याकाळी ६',en:'Monday to Saturday · 9 AM to 6 PM'} as L,currency: 'INR',defaultLang: 'mr' as Lang}
+export const SETTINGS = {brand: 'Marathi Masale',whatsapp: '919004859475',phone: '+91 90048 59475',email:'',address:'महाराष्ट्र, भारत · Maharashtra, India',instagram:'',facebook:'',mapUrl:'',hours:{mr:'सोमवार ते शनिवार · सकाळी ९ ते संध्याकाळी ६',en:'Monday to Saturday · 9 AM to 6 PM'} as L,currency: 'INR',defaultLang: 'mr' as Lang, typography: { body: 100, heading: 100, nav: 100, product: 100, loader: 100 } }
 export const SECTIONS = [{id:'hero',label:'Hero',on:true},{id:'story',label:'Our Story',on:true},{id:'collection',label:'Featured Products',on:true},{id:'fragrances',label:'Masala Collections',on:true},{id:'why',label:'Why Marathi Masale',on:true},{id:'lifestyle',label:'Food Story',on:true},{id:'reviews',label:'Customer Reviews',on:true},{id:'instagram',label:'From Our Kitchen',on:false},{id:'cta',label:'CTA',on:true}]
 export type CustomerDetails = {name:string;phone:string;cep:string;street:string;number:string;comp:string;district:string;city:string;state:string;notes:string;email:string}
 export type OrderLead = {id:string;customer:CustomerDetails;items:{id:string;name:string;qty:number;price:number}[];total:number;date:string;status:'Novo'|'Confirmado'|'Enviado'|'Entregue'}
@@ -89,6 +89,7 @@ export const T: Record<string, [string, string]> = {
  'seo.home':['मराठी मसाले — अस्सल घरगुती मसाले आणि पारंपरिक पदार्थ','Marathi Masale — Maharashtrian spices and homemade foods']
 }
 
+export type TypographyScale = { body: number; heading: number; nav: number; product: number; loader: number }
 export type Store = {
   lang: Lang; setLang: (l: Lang) => void; t: (k: string) => string; tr: (l: L) => string
   dict: typeof T; setDict: (d: typeof T) => void
@@ -96,7 +97,7 @@ export type Store = {
   reviews: Review[]; setReviews: (r: Review[]) => void
   posts: Post[]; setPosts: (p: Post[]) => void
   nav: NavItem[]; setNav: (n: NavItem[]) => void
-  settings: typeof SETTINGS; setSettings: (s: typeof SETTINGS) => void
+  settings: typeof SETTINGS; setSettings: (s: typeof SETTINGS) => void; typography: TypographyScale; setTypography: (t: TypographyScale) => void
   sections: typeof SECTIONS; setSections: (s: typeof SECTIONS) => void
   fragrances: Fragrance[]; setFragrances: (f: Fragrance[]) => void
   categories: CategoryItem[]; setCategories: (c: CategoryItem[]) => void
@@ -112,7 +113,7 @@ export const useCMS = () => {
 
 type PersistedCMS = {
   dict: typeof T; products: Product[]; reviews: Review[]; posts: Post[]; nav: NavItem[]
-  settings: typeof SETTINGS; sections: typeof SECTIONS; fragrances: Fragrance[]
+  settings: typeof SETTINGS; typography: TypographyScale; sections: typeof SECTIONS; fragrances: Fragrance[]
   categories: CategoryItem[]; assets: typeof IMG; leads: OrderLead[]
 }
 const STORAGE_KEY = 'marathi-masale-uat-v2'
@@ -129,12 +130,21 @@ export function CMSProvider({ children }: { children: ReactNode }) {
   const [reviews, setReviews] = useState(() => saved.reviews || REVIEWS)
   const [posts, setPosts] = useState(() => saved.posts || POSTS)
   const [nav, setNav] = useState(() => saved.nav || NAV)
-  const [settings, setSettings] = useState(() => ({ ...SETTINGS, ...saved.settings }))
+  const [settings, setSettings] = useState(() => ({ ...SETTINGS, ...saved.settings, typography: { ...SETTINGS.typography, ...saved.settings?.typography } }))
+  const [typography, setTypography] = useState<TypographyScale>(() => ({ ...SETTINGS.typography, ...saved.settings?.typography }))
   const [sections, setSections] = useState(() => saved.sections || SECTIONS)
   const [fragrances, setFragrances] = useState(() => saved.fragrances || FRAGRANCES)
   const [categories, setCategories] = useState(() => saved.categories || CATEGORIES)
   const [assets, setAssets] = useState(() => ({ ...IMG, ...saved.assets }))
   const [leads, setLeads] = useState<OrderLead[]>(() => saved.leads || [])
+  useEffect(() => {
+    const root = document.documentElement
+    root.style.setProperty('--type-body-scale', String(typography.body / 100))
+    root.style.setProperty('--type-heading-scale', String(typography.heading / 100))
+    root.style.setProperty('--type-nav-scale', String(typography.nav / 100))
+    root.style.setProperty('--type-product-scale', String(typography.product / 100))
+    root.style.setProperty('--type-loader-scale', String(typography.loader / 100))
+  }, [typography])
   useEffect(() => {
     const index = lang === 'mr' ? 0 : 1
     const title = dict['seo.home']?.[index] || 'मराठी मसाले — घरगुती महाराष्ट्रीयन मसाले'
@@ -157,7 +167,7 @@ export function CMSProvider({ children }: { children: ReactNode }) {
   const t = (k: string) => dict[k]?.[i] ?? k
   const tr = (l: L) => l[lang]
   const addLead = (lead: OrderLead) => setLeads((current) => [lead, ...current])
-  return <Ctx.Provider value={{ lang, setLang, t, tr, dict, setDict, products, setProducts, reviews, setReviews, posts, setPosts, nav, setNav, settings, setSettings, sections, setSections, fragrances, setFragrances, categories, setCategories, assets, setAssets, leads, setLeads, addLead }}>{children}</Ctx.Provider>
+  return <Ctx.Provider value={{ lang, setLang, t, tr, dict, setDict, products, setProducts, reviews, setReviews, posts, setPosts, nav, setNav, settings, setSettings, typography, setTypography, sections, setSections, fragrances, setFragrances, categories, setCategories, assets, setAssets, leads, setLeads, addLead }}>{children}</Ctx.Provider>
 }
 
 export const brl = (n: number) => n.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 })
