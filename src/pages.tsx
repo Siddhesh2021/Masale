@@ -93,7 +93,7 @@ export function ProductDetail({ id }: { id: string }) {
   if (!p) return <NotFound />
   const f = fragrances.find((x) => x.id === p.frag)!
   const related = products.filter((x) => x.id !== p.id && x.published && (x.frag === p.frag || x.cat === p.cat)).slice(0, 3)
-  const ld = { '@context': 'https://schema.org', '@type': 'Product', name: tr(p.name), sku: p.sku, image: p.imgs, description: tr(p.desc), brand: { '@type': 'Brand', name: settings.brand }, offers: { '@type': 'Offer', priceCurrency: 'BRL', price: p.price, availability: p.stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' } }
+  const ld = { '@context': 'https://schema.org', '@type': 'Product', name: tr(p.name), sku: p.sku, image: p.imgs, description: tr(p.desc), brand: { '@type': 'Brand', name: settings.brand }, offers: { '@type': 'Offer', priceCurrency: 'INR', price: p.price, availability: p.stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' } }
   const tabs = [[t('pdp.details'), t('pdp.detailsD')], [t('pdp.ship'), t('pdp.shipD')], [t('pdp.care'), t('pdp.careD')]]
   return (
     <>
