@@ -175,8 +175,7 @@ export type Store = {
   assets: typeof IMG; setAssets: (a: typeof IMG) => void
   leads: OrderLead[]; setLeads: (l: OrderLead[]) => void; addLead: (l: OrderLead) => void
 }
-const contextRegistry = globalThis as typeof globalThis & { __gramadoAromaCMS?: Context<Store | null> }
-const Ctx = contextRegistry.__gramadoAromaCMS ??= createContext<Store | null>(null)
+const Ctx = createContext<Store | null>(null)
 export const useCMS = () => {
   const store = useContext(Ctx)
   if (!store) throw new Error('useCMS must be used inside CMSProvider')
@@ -188,7 +187,7 @@ type PersistedCMS = {
   settings: typeof SETTINGS; sections: typeof SECTIONS; fragrances: Fragrance[]
   categories: CategoryItem[]; assets: typeof IMG; leads: OrderLead[]
 }
-const STORAGE_KEY = 'gramado-aroma-cms-v2'
+const STORAGE_KEY = 'marathi-masale-cms-v1'
 const loadCMS = (): Partial<PersistedCMS> => {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') }
   catch { return {} }
@@ -196,7 +195,7 @@ const loadCMS = (): Partial<PersistedCMS> => {
 
 export function CMSProvider({ children }: { children: ReactNode }) {
   const [saved] = useState(loadCMS)
-  const [lang, setLang] = useState<Lang>(() => (localStorage.getItem('ga-lang') as Lang) || saved.settings?.defaultLang || 'pt')
+  const [lang, setLang] = useState<Lang>(() => (localStorage.getItem('mm-lang') as Lang) || saved.settings?.defaultLang || 'mr')
   const [dict, setDict] = useState(() => ({ ...T, ...saved.dict }))
   const [products, setProducts] = useState(() => saved.products || PRODUCTS)
   const [reviews, setReviews] = useState(() => saved.reviews || REVIEWS)
@@ -209,10 +208,10 @@ export function CMSProvider({ children }: { children: ReactNode }) {
   const [assets, setAssets] = useState(() => ({ ...IMG, ...saved.assets }))
   const [leads, setLeads] = useState<OrderLead[]>(() => saved.leads || [])
   useEffect(() => {
-    const index = lang === 'pt' ? 0 : 1
-    const title = dict['seo.home']?.[index] || 'Gramado Aroma — Home fragrance'
-    const description = dict['hero.sub']?.[index] || 'Home fragrances that turn small moments into experiences.'
-    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en'
+    const index = lang === 'mr' ? 0 : 1
+    const title = dict['seo.home']?.[index] || 'मराठी मसाले — घरगुती महाराष्ट्रीयन मसाले'
+    const description = dict['hero.sub']?.[index] || 'Authentic Maharashtrian masalas, pickles and homemade foods.'
+    document.documentElement.lang = lang === 'mr' ? 'mr-IN' : 'en'
     document.title = title
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
     // Client-side title updates help browser tabs and crawlers that execute JS.
@@ -221,16 +220,16 @@ export function CMSProvider({ children }: { children: ReactNode }) {
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', description)
   }, [lang, dict])
-  useEffect(() => { localStorage.setItem('ga-lang', lang) }, [lang])
+  useEffect(() => { localStorage.setItem('mm-lang', lang) }, [lang])
   useEffect(() => {
     const data: PersistedCMS = { dict, products, reviews, posts, nav, settings, sections, fragrances, categories, assets, leads }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   }, [dict, products, reviews, posts, nav, settings, sections, fragrances, categories, assets, leads])
-  const i = lang === 'pt' ? 0 : 1
+  const i = lang === 'mr' ? 0 : 1
   const t = (k: string) => dict[k]?.[i] ?? k
   const tr = (l: L) => l[lang]
   const addLead = (lead: OrderLead) => setLeads((current) => [lead, ...current])
   return <Ctx.Provider value={{ lang, setLang, t, tr, dict, setDict, products, setProducts, reviews, setReviews, posts, setPosts, nav, setNav, settings, setSettings, sections, setSections, fragrances, setFragrances, categories, setCategories, assets, setAssets, leads, setLeads, addLead }}>{children}</Ctx.Provider>
 }
 
-export const brl = (n: number) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+export const brl = (n: number) => n.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 })
