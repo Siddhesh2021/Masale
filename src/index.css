@@ -202,7 +202,7 @@ h1, h2, h3, h4 {
 
 /* Smaller screens travel less distance so the entrance stays subtle. */
 @media (max-width: 767px) {
-  .frag-image-reveal { transform: translateY(20px) scale(1.02); }
+  .frag-image-reveal { transform: none !important; }
 }
 
 /* image clip reveal */
